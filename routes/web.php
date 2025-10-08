@@ -6,10 +6,11 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\customer\CartController;
 use App\Http\Controllers\Customer\HomeController;
 use App\Http\Controllers\Customer\OrderController;
-use App\Http\Controllers\Customer\WhisListController;
+
 use App\Http\Controllers\Customer\WishListController;
 use App\Http\Controllers\ProductController;
 
+use Illuminate\Support\Facades\Mail;
 Route::view('/', 'welcome');
 
 Route::view('dashboard', 'welcome')
@@ -29,9 +30,17 @@ Route::view('register', 'register')
     
     ->name('register');
 
-Route::view('logout', 'profile.delete-user-form')
-    ->middleware(['auth'])
-    ->name('logout');
+Route::post('/logout', function () {
+    $logout = new \App\Livewire\Actions\Logout();
+    $logout();
+    return redirect('/userhome');
+})->middleware(['auth'])->name('logout');
+
+
+
+
+
+
 require __DIR__ . '/auth.php';
 Route::view('/home', 'admin.home')->name('home');
 Route::middleware(['auth'])->group(function () {
@@ -90,4 +99,11 @@ Route::controller(OrderController::class)->group(function () {
     Route::get('order','index')->name('order');
     Route::get('order/delete/{id}', 'delete')->name('order.delete');
     Route::get('order/view/{id}', 'show')->name('order.view');
+});
+
+
+
+Mail::raw('This is a test email', function ($message) {
+    $message->to('user@example.com')
+            ->subject('Test Email');
 });

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class WishListItem extends Model
 {
+    protected $table='wishlist_items';
      protected $fillable = [
         'wishlist_id',
         'product_id',
@@ -17,6 +18,6 @@ class WishListItem extends Model
     }
 
     public function WishList(){
-        return $this->belongsTo(WishList::class);
+        return $this->belongsTo(WishList::class,'wishlist_id');
     }
 }

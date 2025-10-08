@@ -12,30 +12,35 @@
             </div>
         </div>
         <div class="col-md-4 col-lg-6 text-center">
+            <form action="{{route('userhome')}}"  method="get">
             <div class="position-relative ps-4">
                 <div class="d-flex border rounded-pill">
-                    <input class="form-control border-0 rounded-pill w-100 py-3" type="text"
-                        data-bs-target="#dropdownToggle123" placeholder="Search Looking For?">
-                    <select class="form-select text-dark border-0 border-start rounded-0 p-3" style="width: 200px;">
-                        <option value="All Category">All Category</option>
-                        @foreach($categories as $category)
+                    
+                        <input class="form-control border-0 rounded-pill w-100 py-3" type="text" name="productName"
+                            data-bs-target="#dropdownToggle123" placeholder="Search Looking For?">
+                        <select name="category_id" class="form-select text-dark border-0 border-start rounded-0 p-3" style="width: 200px;">
+                            <option value="All Category">All Category</option>
+                            @foreach($categories as $category)
 
-                        <option value="{{$category->name}}">{{$category->name}}</option>
-                        @endforeach
-                    </select>
-                    <button type="button" class="btn btn-primary rounded-pill py-3 px-5" style="border: 0;"><i
-                            class="fas fa-search"></i></button>
+                            <option value="{{$category->name}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="btn btn-primary rounded-pill py-3 px-5" style="border: 0;"><i
+                                class="fas fa-search"></i></button>
+                   
                 </div>
             </div>
+             </form>
         </div>
         <div class="col-md-4 col-lg-3 text-center text-lg-end">
             <div class="d-inline-flex align-items-center">
 
 
-
+                <!-- wishlist -->
                 <a href="#" class="text-muted d-flex align-items-center justify-content-center me-3" data-bs-target="#offcanvasHeart"
                     aria-controls="offcanvasHeart" data-bs-toggle="offcanvas"><span
                         class="rounded-circle btn-md-square border"><i class="fas fa-heart"></i></a>
+                <!-- cart -->
                 <a href="#" class="text-muted d-flex align-items-center justify-content-center"><span
                         class="rounded-circle btn-md-square border" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasCart"
@@ -43,8 +48,10 @@
                     <span class="text-dark ms-2">{{$total}}<small>$</small></span></a>
 
 
-
-                <a href="#" class=" ms-5 btn btn-primary">logOut</a>
+                <form method="post" action="{{route('logout')}}">
+                    @csrf
+                    <button type="submit" name='submit' class=" ms-5 btn btn-primary">logOut</button>
+                </form>
             </div>
         </div>
     </div>
