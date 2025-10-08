@@ -99,6 +99,17 @@
 
      </li>
 
+
+      <li class="nav-item menu-items">
+       <a class="nav-link" href="{{url('order')}}">
+         <span class="menu-icon">
+           <i class="mdi mdi-account-multiple"></i>
+         </span>
+         <span class="menu-title">Orders</span>
+         <i class="menu-arrow"></i>
+       </a>
+
+     </li>
    </ul>
 
  </nav>

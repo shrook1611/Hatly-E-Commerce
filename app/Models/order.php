@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class order extends Model
 {
-    protected $gaurded = [];
+    protected $fillable = ['user_id', 'total'];
    public function items(){
         return $this->hasMany(OrderItems::class);
     }

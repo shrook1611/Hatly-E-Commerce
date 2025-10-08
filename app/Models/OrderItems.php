@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderItems extends Model
 {
-     protected $gaurded = [];
+     protected $fillable = ['order_id', 'product_id', 'quantity', 'price'];
     public function order(){
           return $this->belongsTo(order::class);
      }

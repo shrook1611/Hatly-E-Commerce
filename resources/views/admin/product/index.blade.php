@@ -1,4 +1,4 @@
-<!-- @role('admin') -->
+
 
 @extends('admin.main');
 @section('title','products');

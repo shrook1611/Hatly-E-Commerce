@@ -12,7 +12,7 @@ use App\Http\Controllers\ProductController;
 
 Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
+Route::view('dashboard', 'welcome')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
@@ -20,6 +20,18 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+Route::view('login', 'login')
+    
+    ->name('login');
+
+
+Route::view('register', 'register')
+    
+    ->name('register');
+
+Route::view('logout', 'profile.delete-user-form')
+    ->middleware(['auth'])
+    ->name('logout');
 require __DIR__ . '/auth.php';
 Route::view('/home', 'admin.home')->name('home');
 Route::middleware(['auth'])->group(function () {
@@ -75,5 +87,7 @@ Route::controller(WishListController::class)->group(function () {
 // order routes
 Route::controller(OrderController::class)->group(function () {
     Route::post('/create-order', 'createOrder')->name('createOrder');
-    Route::get('user/delete/{id}', 'delete')->name('user.delete');
+    Route::get('order','index')->name('order');
+    Route::get('order/delete/{id}', 'delete')->name('order.delete');
+    Route::get('order/view/{id}', 'show')->name('order.view');
 });
