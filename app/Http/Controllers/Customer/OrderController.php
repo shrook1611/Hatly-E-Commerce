@@ -66,6 +66,17 @@ $order = order::findOrFail($id);
 public function show($id){
   $order = order::with('items.product') ->where('user_id', auth()->id())  // Security: only show user's own orders
         ->findOrFail($id);
+
+      
+    
+    // $subtotal = $order->items->sum(function($item) {
+    //     return $item->quantity * $item->price;
+    // });
+    
+    // $vat = $subtotal * 0.14;
+    // $shipping = 0;
+    // $total = $subtotal + $vat + $shipping;
+    
  
   return view('admin.orders.show', compact('order'));
 

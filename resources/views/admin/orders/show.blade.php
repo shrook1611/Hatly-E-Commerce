@@ -19,6 +19,7 @@
                     <span class="badge bg-info">Processing</span>
                 @endif
             </div>
+         
         </div>
         <div class="card-body">
             <div class="row">
@@ -49,7 +50,10 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         @foreach($order->items as $item)
+                   
+          
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
@@ -114,11 +118,11 @@
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Tax:</span>
-                        <span>${{ number_format($item->quantity * $item->price*0.14, 2) }}</span>
+                        <span>00</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Shipping:</span>
-                        <span>$0.00</span>
+                        <span>00</span>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between">
