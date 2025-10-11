@@ -61,7 +61,10 @@ public function cart(){
 
 
 
-
+public function wishlist()
+{
+    return $this->hasOne(Wishlist::class);
+}
 
 
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\Customer\OrderController;
 
 use App\Http\Controllers\Customer\WishListController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BestSellerController;
 
 use Illuminate\Support\Facades\Mail;
 Route::view('/', 'welcome');
@@ -21,9 +22,9 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::view('login', 'login')
-    
-    ->name('login');
+Route::get('login', function () {
+    return redirect('userhome');
+})->name('login');
 
 
 Route::view('register', 'register')
@@ -33,7 +34,7 @@ Route::view('register', 'register')
 Route::post('/logout', function () {
     $logout = new \App\Livewire\Actions\Logout();
     $logout();
-    return redirect('/userhome');
+    return redirect('/');
 })->middleware(['auth'])->name('logout');
 
 
@@ -68,6 +69,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
+
     // /user routes
     Route::controller(UserController::class)->group(function () {
         Route::get('user', 'index')->name('user');
@@ -91,7 +93,10 @@ Route::controller(CartController::class)->group(function () {
 
 Route::controller(WishListController::class)->group(function () {
     Route::post('addWish/{id}', 'addToWish')->name('addWish');
-    Route::get('user/delete/{id}', 'delete')->name('user.delete');
+
+   Route::post('/wishlist/toggle/{product}', [WishlistController::class, 'toggle'])
+    ->name('wishlist.toggle');
+
 });
 // order routes
 Route::controller(OrderController::class)->group(function () {

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('wishlist_items', function (Blueprint $table) {
             $table->id();
              $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->foreignId('wishlist_id')->constrained('whish_lists')->onDelete('cascade');
+            $table->foreignId('wishlist_id')->constrained()->onDelete('cascade');
             $table->integer('quantity');
             $table->timestamps();
         });

@@ -10,27 +10,28 @@
                 </div>
                 <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
                     <ul class="nav nav-pills d-inline-flex text-center mb-5">
+                        <form action="{{route('userhome')}}" method="GET">
                         <li class="nav-item mb-4">
-                            <a class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
+                            <button type="submit"  value="1"   name="all_products" class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
                                 href="#tab-1">
                                 <span class="text-dark" style="width: 130px;">All Products</span>
-                            </a>
+                            </button>
                         </li>
+</form>
+                        <form action="{{route('userhome')}}" method="GET">
                         <li class="nav-item mb-4">
-                            <a class="d-flex py-2 mx-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
+                            <button type="submit"  value="1"   name="new_arrival" class="d-flex py-2 mx-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
                                 <span class="text-dark" style="width: 130px;">New Arrivals</span>
-                            </a>
+                            </button>
                         </li>
+</form>
+<form action="{{route('userhome')}}" method="GET">
                         <li class="nav-item mb-4">
-                            <a class="d-flex mx-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
-                                <span class="text-dark" style="width: 130px;">Featured</span>
-                            </a>
-                        </li>
-                        <li class="nav-item mb-4">
-                            <a class="d-flex mx-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
+                            <button type="submit"  value="1"   name="top_seller" class="d-flex mx-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
                                 <span class="text-dark" style="width: 130px;">Top Selling</span>
-                            </a>
+                            </button>
                         </li>
+</form>
                     </ul>
                 </div>
             </div>
@@ -51,8 +52,8 @@
                                     <div class="text-center rounded-bottom p-4">
                                         <a href="#" class="d-block mb-2">{{$product->name}}</a>
                                         <a href="#" class="d-block h4">{{$product->description}} </a>
-                                        <del class="me-2 fs-5">{{$product->price}}</del>
-                                        <span class="text-primary fs-5">{{$product->quantity}}</span>
+                                        <span class="me-2 fs-5">{{$product->price}}</span>
+                                        <p class="text-primary fs-5">quantity:{{$product->quantity}}</p>
                                     </div>
                                 </div>
                                 <div
@@ -78,18 +79,28 @@
                                                 class="text-primary d-flex align-items-center justify-content-center me-3"><span
                                                     class="rounded-circle btn-sm-square border"><i
                                                         class="fas fa-random"></i></i></a>
-                                                        <form method="POST" action="{{route('addWish',$product->id)}}">
-                                                            <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                            @csrf
-                                                            <button type="submit" 
-                                                                class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                                    class="rounded-circle btn-sm-square border"><i
-                                                                        class="fas fa-heart"></i></button>
-                                                        </form>
-                                            <!-- <a href="#"
-                                                class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                    class="rounded-circle btn-sm-square border"><i
-                                                        class="fas fa-heart"></i></a> -->
+                                                                                @php
+    $isFavorite = false;
+
+    if(auth()->check() && auth()->user()->wishlist) {
+        $isFavorite = auth()->user()->wishlist
+            ->items()
+            ->where('product_id', $product->id)
+            ->exists();
+    }
+@endphp
+
+<form method="POST" action="{{ route('wishlist.toggle', $product->id) }}">
+    <input type="hidden" name="product_id" value="{{$product->id}}">
+    @csrf
+    <button type="submit" class="text-primary">
+        @if($isFavorite)
+            <i class="fas fa-heart" style="color:red;"></i>
+        @else
+            <i class="far fa-heart"></i>
+        @endif
+    </button>
+</form>
                                         </div>
                                     </div>
                                 </div>

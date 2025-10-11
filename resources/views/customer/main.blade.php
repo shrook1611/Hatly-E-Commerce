@@ -27,7 +27,7 @@
 <!-- Searvices End -->
 
 <!-- Products Offer Start -->
-@include('customer.layouts.offer')
+<!-- @include('customer.layouts.offer') -->
 <!-- Products Offer End -->
 
 

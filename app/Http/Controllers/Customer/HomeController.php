@@ -21,7 +21,17 @@ if($request->filled('productName')){
 if($request->filled('category_id')){
   $query->where('category_id',$request->category_id);
 }
+if ($request->filled('new_arrival')) {
+   $query->where('created_at', '>=', now()->subDays(2)); // or whatever value you need
+}
+if($request->filled('top_seller')){
+  $query->where('top_seller',true);
+}
+if($request->filled('all_products')){
+  $query->get();
+}
 $products=$query->get();
+$topSellingProducts=Product::where('top_seller',true)->get();
 
     $categories=Category::all();
     $cart=Cart::with('items.product')->where('user_id',auth()->user()->id)->first();
@@ -35,6 +45,6 @@ $total=$cart->items->sum(function($item){
 
 
     }
-    return view('customer.index' , compact('products','categories', 'cart','total','wishList'));
+    return view('customer.index' , compact('products','categories', 'cart','total','wishList','topSellingProducts'));
   }
 }

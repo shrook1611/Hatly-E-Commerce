@@ -48,7 +48,7 @@
                     <p class="hero-subtitle">Discover amazing products at unbeatable prices. Quality you can trust, delivered to your door.</p>
                     <div class="d-flex gap-3">
                         <a href="{{route('userhome')}}" class="btn btn-orange btn-lg">Shop Now</a>
-                        <a href="#categories" class="btn btn-outline-dark btn-lg">Browse Categories</a>
+                       
                     </div>
                     <div class="mt-4">
                         <small class="text-muted">
@@ -102,49 +102,6 @@
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="py-5" id="categories">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="section-title">Shop by Category</h2>
-                <p class="section-subtitle">Find exactly what you're looking for</p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="category-card card text-center p-4">
-                        <div class="card-body">
-                            <i class="bi bi-laptop category-icon"></i>
-                            <h4>Electronics</h4>
-                            <p class="text-muted">Latest gadgets & tech</p>
-                            <a href="#" class="btn btn-orange">Explore</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="category-card card text-center p-4">
-                        <div class="card-body">
-                            <i class="bi bi-watch category-icon"></i>
-                            <h4>Fashion</h4>
-                            <p class="text-muted">Trendy clothes & accessories</p>
-                            <a href="#" class="btn btn-orange">Explore</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="category-card card text-center p-4">
-                        <div class="card-body">
-                            <i class="bi bi-house-door category-icon"></i>
-                            <h4>Home & Living</h4>
-                            <p class="text-muted">Furniture & decor</p>
-                            <a href="#" class="btn btn-orange">Explore</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Products -->
   
 
     <!-- Footer -->

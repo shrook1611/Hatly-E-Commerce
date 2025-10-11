@@ -11,6 +11,7 @@
 
               <ul class="list-group mb-3">
                  @foreach($wishList->items as $item)
+             
                  @if($item->product)
                  <li class="list-group-item d-flex justify-content-between lh-sm">
                      <div>
@@ -38,7 +39,7 @@
 
 
 
-             <a href="{{route('userhome')}}"      class="w-100 btn btn-primary btn-lg" type="submit">Continue Shopping</a>
+             <a href="{{route('userhome')}}" class="w-100 btn btn-primary btn-lg" type="submit">Clear</a>
          </div>
      </div>
  </div>
