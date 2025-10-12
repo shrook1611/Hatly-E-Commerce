@@ -48,7 +48,7 @@
                     <span class="text-dark ms-2">{{$total}}<small>$</small></span></a>
 
 
-                <form method="post" action="{{route('logout')}}">
+                <form method="get" action="{{route('logout')}}">
                     @csrf
                     <button type="submit" name='submit' class=" ms-5 btn btn-primary">logOut</button>
                 </form>

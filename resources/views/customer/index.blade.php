@@ -8,32 +8,36 @@
                 <div class="col-lg-4 text-start wow fadeInLeft" data-wow-delay="0.1s">
                     <h1>Our Products</h1>
                 </div>
-                <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
-                    <ul class="nav nav-pills d-inline-flex text-center mb-5">
-                        <form action="{{route('userhome')}}" method="GET">
-                        <li class="nav-item mb-4">
-                            <button type="submit"  value="1"   name="all_products" class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
-                                href="#tab-1">
-                                <span class="text-dark" style="width: 130px;">All Products</span>
-                            </button>
-                        </li>
-</form>
-                        <form action="{{route('userhome')}}" method="GET">
-                        <li class="nav-item mb-4">
-                            <button type="submit"  value="1"   name="new_arrival" class="d-flex py-2 mx-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                                <span class="text-dark" style="width: 130px;">New Arrivals</span>
-                            </button>
-                        </li>
-</form>
-<form action="{{route('userhome')}}" method="GET">
-                        <li class="nav-item mb-4">
-                            <button type="submit"  value="1"   name="top_seller" class="d-flex mx-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
-                                <span class="text-dark" style="width: 130px;">Top Selling</span>
-                            </button>
-                        </li>
-</form>
-                    </ul>
-                </div>
+<div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
+    <ul class="nav nav-pills d-inline-flex text-center mb-5">
+        <li class="nav-item mb-4">
+            <form action="{{route('userhome')}}" method="GET" class="d-inline">
+                <button type="submit" value="1" name="all_products" 
+                    class="d-flex mx-2 py-2 rounded-pill {{ request()->has('all_products') || count(request()->query()) == 0 ? 'bg-primary text-white' : 'bg-light' }}">
+                    <span style="width: 130px;">All Products</span>
+                </button>
+            </form>
+        </li>
+
+        <li class="nav-item mb-4">
+            <form action="{{route('userhome')}}" method="GET" class="d-inline">
+                <button type="submit" value="1" name="new_arrival" 
+                    class="d-flex py-2 mx-2 rounded-pill {{ request()->has('new_arrival') ? 'bg-primary text-white' : 'bg-light' }}">
+                    <span class="{{ request()->has('new_arrival') ? 'text-white' : 'text-dark' }}" style="width: 130px;">New Arrivals</span>
+                </button>
+            </form>
+        </li>
+
+        <li class="nav-item mb-4">
+            <form action="{{route('userhome')}}" method="GET" class="d-inline">
+                <button type="submit" value="1" name="top_seller" 
+                    class="d-flex mx-2 py-2 rounded-pill {{ request()->has('top_seller') ? 'bg-primary text-white' : 'bg-light' }}">
+                    <span class="{{ request()->has('top_seller') ? 'text-white' : 'text-dark' }}" style="width: 130px;">Top Selling</span>
+                </button>
+            </form>
+        </li>
+    </ul>
+</div>
             </div>
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">

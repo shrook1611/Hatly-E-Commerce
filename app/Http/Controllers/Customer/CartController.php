@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\CartItems;
 
 class CartController extends Controller
 {
@@ -39,4 +40,14 @@ class CartController extends Controller
         }
         return redirect()->route('userhome')->with('success', 'Product added to cart successfully');
     }
+
+
+public function deleteItem($id)
+{
+    $item = CartItems::findOrFail($id);
+    $item->delete();
+
+    return redirect()->back()->with('success', 'Product removed from cart successfully');
+}
+
 }

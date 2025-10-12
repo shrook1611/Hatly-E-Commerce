@@ -31,10 +31,10 @@ Route::view('register', 'register')
     
     ->name('register');
 
-Route::post('/logout', function () {
+Route::get('/logout', function () {
     $logout = new \App\Livewire\Actions\Logout();
     $logout();
-    return redirect('/');
+    return redirect('login');
 })->middleware(['auth'])->name('logout');
 
 
@@ -87,13 +87,15 @@ Route::controller(CartController::class)->group(function () {
     
     Route::post('addCart/{id}', 'addToCart')->name('addCart');
   
-    Route::get('user/delete/{id}', 'delete')->name('user.delete');
+  Route::delete('/cart/item/{id}', [CartController::class, 'deleteItem'])->name('cart.deleteItem');
+
 });
 // wishlist routes
 
 Route::controller(WishListController::class)->group(function () {
     Route::post('addWish/{id}', 'addToWish')->name('addWish');
-
+Route::get('wishlist/delete/{id}', 'delete')->name('wish.delete');
+    Route::delete('/wish/item/{id}', [WishlistController::class, 'removeItem'])->name('wish.deleteItem'); 
    Route::post('/wishlist/toggle/{product}', [WishlistController::class, 'toggle'])
     ->name('wishlist.toggle');
 
