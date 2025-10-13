@@ -17,7 +17,7 @@ class HomeController extends Controller
         if(!auth()->user()){
 return redirect()->route('login')->with('error', 'You must be logged in to access this page.');
     }
-    
+
     $query = Product::query();
 if($request->filled('productName')){
   $query->where('name','like','%'.$request->productName.'%');
@@ -34,6 +34,7 @@ if($request->filled('top_seller')){
 if($request->filled('all_products')){
   $query->get();
 }
+
 $products=$query->get();
 $topSellingProducts=Product::where('top_seller',true)->get();
     $categories=Category::all();
@@ -51,4 +52,10 @@ $total=$cart->items->sum(function($item){
     }
     return view('customer.index' , compact('products','categories', 'cart','total','wishList','topSellingProducts'));
   }
+
+
+
+
+
+
 }

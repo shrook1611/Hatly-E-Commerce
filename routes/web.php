@@ -108,6 +108,10 @@ Route::controller(OrderController::class)->group(function () {
     Route::get('order/view/{id}', 'show')->name('order.view');
 });
 
+Route::get('orderdetails', [OrderController::class, 'showCustomerOrderDetails'])->name('orderdetails');
+Route::get('/contact', function () {
+    return view('customer.contact');
+})->name('contact');
 
 
 Mail::raw('This is a test email', function ($message) {

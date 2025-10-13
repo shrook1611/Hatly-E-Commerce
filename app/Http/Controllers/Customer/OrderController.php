@@ -8,7 +8,8 @@ use App\Models\order;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Product;
+use App\Models\Category;
 class OrderController extends Controller
 {
     public function index()
@@ -83,8 +84,19 @@ public function show($id){
 
 
 }
+public function showCustomerOrderDetails(): View
+{
+    $orders = order::with('items.product')->where('user_id', auth()->user()->id)->get();
+    $cart = Cart::with('items.product')->where('user_id', auth()->user()->id)->first();
+    $products=Product::all();
+$topSellingProducts=Product::where('top_seller',true)->get();
+    $categories=Category::all();
+    $total = 0;
+    if ($cart) {
+        $total = $cart->items->sum(fn($item) => $item->price);
+    }
+    return view('customer.customerorderdetails', compact('orders', 'cart', 'total','products','categories','topSellingProducts'));
 
-
-
+}
 
 }

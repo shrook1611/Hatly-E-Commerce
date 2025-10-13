@@ -144,6 +144,7 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('customer/')}}/js/main.js"></script>
+   
 </body>
 
 </html>

@@ -45,8 +45,11 @@
                         class="rounded-circle btn-md-square border" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasCart"
                         aria-controls="offcanvasCart"><i class="fas fa-shopping-cart"></i></span>
-                    <span class="text-dark ms-2">{{$total}}<small>$</small></span></a>
-
+                        
+                    <span class="text-dark ms-2">{{$total? $total:0}}<small>$</small></span></a>
+                 
+                   
+                  
 
                 <form method="get" action="{{route('logout')}}">
                     @csrf

@@ -47,8 +47,11 @@
                             <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="product-item-inner border rounded">
                                     <div class="product-item-inner-item">
-                                        <img src="{{asset('storage/'.$product->image)}}" class="img-fluid w-100 rounded-top" alt="">
+                                       
+                                    <img src="{{asset('storage/'.$product->image)}}" class="img-fluid w-100 rounded-top" alt="">
+@if($product->created_at >= now()->subDays(2))
                                         <div class="product-new">New</div>
+@endif
                                         <div class="product-details">
                                             <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                         </div>

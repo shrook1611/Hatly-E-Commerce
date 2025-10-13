@@ -57,9 +57,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="#" class="nav-item nav-link active">Home</a>
-                        <a href="#" class="nav-item nav-link">Shop</a>
-                        <a href="#" class="nav-item nav-link me-2">Contact</a>
+                        <a href="{{route('userhome')}}" class="nav-item nav-link active">Home</a>
+                        <a href="{{route('contact')}}" class="nav-item nav-link me-2">Contact</a>
+                        <a href="{{route('orderdetails')}}" class="nav-item nav-link">MyOrders</a>
+                   
 
                     </div>
 
